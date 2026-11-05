@@ -116,6 +116,9 @@ p,h1,h2,ul{margin:0}
 
 /* ---------- gold type ---------- */
 .gold{background-image:var(--gold-grad);background-size:6em 100%;background-repeat:repeat;-webkit-background-clip:text;background-clip:text;color:transparent;-webkit-text-fill-color:transparent}
+/* the gold fill only paints inside the element's box, but script swashes and the tails of 5, Г, ! reach past it:
+   pad the box and pull it back with equal negative margins, so letters are whole and nothing moves */
+.gold{padding:.25em .55em;margin:-.25em -.55em;-webkit-box-decoration-break:clone;box-decoration-break:clone}
 .sheen{animation:sheen 9s linear infinite}
 @keyframes sheen{to{background-position:-6em 0}}
 .glow{filter:drop-shadow(0 0 .14em rgba(var(--glow),.32))}
@@ -180,7 +183,7 @@ p,h1,h2,ul{margin:0}
 .seal{position:absolute;z-index:5;left:50%;top:54%;width:calc(19*var(--u));aspect-ratio:1;transform:translate(-50%,-50%);display:grid;place-items:center;padding:0;border:0;cursor:pointer;border-radius:48% 52% 50% 50%/50% 47% 53% 50%;background:radial-gradient(circle at 34% 30%,#c4404f 0%,#9b1a2e 38%,#6e0d1d 70%,#4a0713 100%);box-shadow:0 calc(.6*var(--u)) calc(1.8*var(--u)) rgba(0,0,0,.55),inset 0 0 0 calc(1.1*var(--u)) rgba(90,8,20,.5),inset 0 calc(-.7*var(--u)) calc(1.4*var(--u)) rgba(0,0,0,.35);animation:sealPulse 2.6s ease-in-out infinite}
 .seal::before{content:"";position:absolute;inset:15%;border-radius:50%;border:1px solid rgba(255,214,150,.5)}
 .seal::after{content:"";position:absolute;inset:-14%;border-radius:50%;border:1px solid rgba(var(--glow),.6);animation:sealRing 2.6s ease-out infinite}
-.seal-mono{font:400 calc(10.5*var(--u))/1 var(--f-script);margin-top:.12em;padding:0 .12em}
+.seal-mono{font:400 calc(10.5*var(--u))/1 var(--f-script);margin:-.13em -.55em -.25em}
 @keyframes sealPulse{0%,100%{transform:translate(-50%,-50%) scale(1)}50%{transform:translate(-50%,-50%) scale(1.05)}}
 @keyframes sealRing{from{transform:scale(.82);opacity:.95}to{transform:scale(1.4);opacity:0}}
 
@@ -213,7 +216,7 @@ p,h1,h2,ul{margin:0}
 @keyframes rev{from{opacity:0;transform:translateY(calc(2.4*var(--u)));filter:blur(8px)}to{opacity:1;transform:none;filter:blur(0)}}
 @keyframes revZoom{from{opacity:0;transform:scale(1.25);filter:blur(10px)}to{opacity:1;transform:none;filter:blur(0)}}
 @keyframes revSpread{from{opacity:0;letter-spacing:1.1em;filter:blur(6px)}to{opacity:1;filter:blur(0)}}
-.wipe{display:block;padding:.1em .45em .22em;margin:-.1em -.45em -.22em;-webkit-mask-image:linear-gradient(90deg,#000 0 50%,transparent 60%);mask-image:linear-gradient(90deg,#000 0 50%,transparent 60%);-webkit-mask-size:250% 100%;mask-size:250% 100%;-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;-webkit-mask-position:100% 0;mask-position:100% 0}
+.wipe{display:block;padding:.25em .6em .22em;margin:-.25em -.6em -.22em;-webkit-mask-image:linear-gradient(90deg,#000 0 50%,transparent 60%);mask-image:linear-gradient(90deg,#000 0 50%,transparent 60%);-webkit-mask-size:250% 100%;mask-size:250% 100%;-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;-webkit-mask-position:100% 0;mask-position:100% 0}
 .scene:is(.on,.out) .wipe{animation:wipe var(--wd,2.2s) cubic-bezier(.5,.1,.4,1) var(--d,0s) both}
 @keyframes wipe{from{opacity:1;-webkit-mask-position:100% 0;mask-position:100% 0}to{opacity:1;-webkit-mask-position:0 0;mask-position:0 0}}
 .divider{display:block;width:calc(46*var(--u));max-width:100%;height:auto;aspect-ratio:10/1;overflow:visible}
@@ -270,14 +273,14 @@ p,h1,h2,ul{margin:0}
 .scene:is(.on,.out) .ring-c1{animation:draw 2.3s cubic-bezier(.6,.1,.3,1) .6s both}
 .scene:is(.on,.out) .ring-c2{animation:fillIn 1.5s ease 2.2s both,spin 80s linear infinite}
 .ring-in{position:relative;display:flex;flex-direction:column;align-items:center}
-.d-day{font:400 calc(21*var(--u))/1 var(--f-num);padding:0 .06em}
+.d-day{font:400 calc(21*var(--u))/1 var(--f-num)}
 .d-month{margin-top:calc(1.2*var(--u));font:600 calc(4.2*var(--u))/1 var(--f-text);letter-spacing:.36em;padding-left:.36em;text-transform:uppercase;color:var(--champagne)}
 .d-year{margin-top:calc(1.4*var(--u));font:italic 500 calc(4.6*var(--u))/1 var(--f-text);color:var(--muted)}
 .d-time{font:400 calc(6.6*var(--u))/1.2 var(--f-num);color:var(--champagne)}
 .d-time .gold{font-weight:500}
 .d-venue{display:inline-flex;align-items:center;gap:.5em;margin-top:calc(1.4*var(--u))}
 .d-venue .ico{width:1.35em;height:1.35em;color:var(--gold)}
-.d-venue-name{font:italic 400 calc(7.6*var(--u))/1.2 var(--f-num);padding:0 .1em;text-wrap:balance}
+.d-venue-name{font:italic 400 calc(7.6*var(--u))/1.2 var(--f-num);text-wrap:balance}
 .d-addr{max-width:calc(80*var(--u));font:italic 500 max(14px,calc(4.8*var(--u)))/1.35 var(--f-text);color:var(--muted);text-wrap:balance}
 
 /* 5 — RSVP */
@@ -298,7 +301,7 @@ p,h1,h2,ul{margin:0}
 @keyframes flL{0%{opacity:0;transform:translateX(-40px) rotate(-6deg)}45%{opacity:1;transform:translateX(-6px) rotate(4deg)}58%{transform:translateX(0) rotate(15deg)}70%{transform:translateX(-2px) rotate(11deg)}100%{opacity:1;transform:translateX(0) rotate(13deg)}}
 @keyframes flR{0%{opacity:0;transform:translateX(40px) rotate(6deg)}45%{opacity:1;transform:translateX(6px) rotate(-4deg)}58%{transform:translateX(0) rotate(-15deg)}70%{transform:translateX(2px) rotate(-11deg)}100%{opacity:1;transform:translateX(0) rotate(-13deg)}}
 .rs-ask{font-size:max(12px,calc(3.6*var(--u)));letter-spacing:.3em;padding-left:.3em;line-height:1.6;text-wrap:balance;max-width:calc(84*var(--u))}
-.rs-date{font:italic 400 calc(8.4*var(--u))/1.2 var(--f-num);padding:0 .1em}
+.rs-date{font:italic 400 calc(8.4*var(--u))/1.2 var(--f-num)}
 .rs-phone{display:flex;flex-direction:column;align-items:center;gap:calc(1*var(--u));margin-top:calc(1*var(--u))}
 .rs-phone small{font:italic 500 max(14px,calc(4.4*var(--u)))/1 var(--f-text);color:var(--muted)}
 .rs-phone b{font:400 calc(6.4*var(--u))/1.2 var(--f-num);letter-spacing:.04em;color:var(--champagne)}
