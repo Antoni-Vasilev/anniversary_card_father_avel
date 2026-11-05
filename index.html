@@ -3,10 +3,29 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Юбилеят на Георги</title>
+<title>Юбилеят на Светлозар Стоянов</title>
 <meta name="claude:viewport-fit-sides" content="cover">
 <meta name="description" content="Анимирана покана за юбилей">
 <meta name="theme-color" content="#070504">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='30' fill='%238d1426'/%3E%3Ccircle cx='32' cy='32' r='21' fill='none' stroke='%23e6c477' stroke-width='2.5'/%3E%3Ccircle cx='32' cy='32' r='7' fill='%23e6c477'/%3E%3C/svg%3E">
+<!-- ===================================================================
+     ПРЕГЛЕД ПРИ СПОДЕЛЯНЕ (Viber, WhatsApp, Messenger, Facebook)
+     Приложенията НЕ изпълняват JavaScript, затова тези редове се пишат
+     на ръка и не се влияят от CONFIG или параметрите в адреса.
+     og:image трябва да е ПЪЛЕН адрес (https://…) до снимката preview.jpg
+     там, където е качен сайтът. Ако сайтът е другаде, сменете адресите.
+     =================================================================== -->
+<meta property="og:type" content="website">
+<meta property="og:locale" content="bg_BG">
+<meta property="og:title" content="Покана за юбилей · Светлозар Стоянов · 50 години">
+<meta property="og:description" content="Петък, 6 ноември 2026 г., от 19:00 ч. · ресторант „Старата къща“">
+<meta property="og:url" content="https://antoni-vasilev.github.io/anniversary_card_father_-vel/">
+<meta property="og:image" content="https://antoni-vasilev.github.io/anniversary_card_father_-vel/preview.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Покана за юбилей">
+<meta name="twitter:card" content="summary_large_image">
 <script>
 /* ===================================================================
    НАСТРОЙКИ НА ПОКАНАТА — сменете стойностите в кавичките.
@@ -14,25 +33,36 @@
    се изчислява автоматично от тези данни.
    =================================================================== */
 window.CONFIG = {
-  name: "Светлозар Стоянов",                 // име на юбиляря (заглавие и подпис)
+  name: "Светлозар Стоянов",      // име на юбиляря (заглавие и подпис)
   age: 50,                        // навършени години
-  date: "2026-11-06",             // дата на празника: ГГГГ-ММ-ДД
-  time: "19:00",                  // начален час
+  date: "2026-12-06",             // дата на празника: ГГГГ-ММ-ДД
+  time: "12:00",                  // начален час
   venueType: "ресторант",         // ресторант, механа, хотел, дом…
-  venue: "Старата къща",          // име на заведението (без кавички)
-  address: "ул. „Примерна“ № 1, гр. София",
-  mapQuery: "",                   // по желание: точен адрес за Google Maps
-  rsvpDate: "2026-11-05",         // потвърждение до: ГГГГ-ММ-ДД
-  phone: "",          // телефон за потвърждение
-  greeting: "Скъпи приятели,",
+  venue: "Вила Чинка",          // име на заведението (без кавички)
+  address: "Sts. Constantine and Helena Resort, 9006 Варна",
+  mapQuery: "https://www.google.com/maps/place/%D0%92%D0%B8%D0%BB%D0%B0+%D0%A7%D0%B8%D0%BD%D0%BA%D0%B0/@43.2312127,28.0158944,876m/data=!3m1!1e3!4m9!3m8!1s0x40a4577df8433db1:0x3aacc1b52ff37f8b!5m2!4m1!1i2!8m2!3d43.2310733!4d28.0143917!16s%2Fg%2F11h4bzzdbl?entry=ttu&g_ep=EgoyMDI2MTEwMi4wIKXMDSoASAFQAw%3D%3D",                   // по желание: точен адрес за Google Maps
+  rsvpDate: "2026-11-15",         // потвърждение до: ГГГГ-ММ-ДД (празно = без срок)
+  phone: "",                      // телефон за потвърждение (празно = без телефон)
+  greeting: "Скъпи колеги,",
   message: "За мен ще бъде голяма радост и чест да ви посрещна в кръга на най-близките си хора и заедно да отпразнуваме моя {age}-годишен юбилей!",
   highlight: "{age}-годишен юбилей",   // тази част от текста е в злато
   closingTitle: "Очаквам Ви!",
-  closingText: "Нека заедно превърнем тази вечер в незабравим спомен!",
+  closingText: "Нека заедно превърнем този ден в незабравим спомен!",
+  pageTitle: "Покаба за юбилей", // заглавие в раздела на браузъра ({name} и {age} се заместват)
+  slideSeconds: 0,                // секунди за всеки слайд; 0 = автоматично (8–12 сек.)
+  durations: {3: 15},                  // секунди за отделен слайд, напр. { 3: 15, 4: 12 }
+                                  // 1 заглавие · 2 години · 3 текст · 4 дата и място · 5 потвърждение · 6 „Очаквам Ви“
+  sound: true,                    // false = поканата започва без звук
   palette: "gold",                // gold (черно-златно) | navy (синьо) | bordo (бордо) | emerald (зелено)
   hours: 6,                       // продължителност на празника (за календара)
   timeZone: "Europe/Sofia"
 };
+/* ПАРАМЕТРИ В АДРЕСА — по желание; заменят настройките по-горе. Пример:
+     index.html?name=Иван Петров&age=60&date=2026-12-20&time=19:30&venue=Златна липа&slide=10
+   name · age · date · time · type (ресторант…) · venue · address · map · rsvp · phone
+   greeting · message · highlight · closing · closingText · title (заглавие на раздела)
+   palette · slide (сек. за всеки слайд) · slide1 … slide6 (сек. за отделен слайд)
+   sound=0 (без звук) · poster=1 (неподвижен кадър, от който е направена снимката preview.jpg) */
 </script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -366,6 +396,38 @@ p,h1,h2,ul{margin:0}
   .scene.out .fit{filter:none;transform:scale(var(--fit,1))}
 }
 @keyframes fadeIn{from{opacity:0}to{opacity:1}}
+
+/* ---------- pause ---------- */
+#b-pause .pl,#app.user-paused #b-pause .pz,#app[data-scene="card"] #b-pause{display:none}
+#app.user-paused #b-pause .pl{display:block}
+.pause-layer{position:absolute;inset:0;z-index:7;display:grid;place-items:center;background:rgba(0,0,0,.4);opacity:0;visibility:hidden;cursor:pointer;transition:opacity .35s ease,visibility 0s linear .35s}
+#app.user-paused .pause-layer{opacity:1;visibility:visible;transition:opacity .35s ease}
+.pause-btn{display:flex;flex-direction:column;align-items:center;gap:12px;padding:0;border:0;background:none;color:var(--gold-hi);cursor:pointer}
+.pause-ring{width:76px;height:76px;display:grid;place-items:center;border-radius:50%;border:1px solid var(--line);background:rgba(10,8,5,.72);box-shadow:0 0 30px rgba(var(--glow),.22);transition:border-color .3s ease,background .3s ease}
+.pause-btn:hover .pause-ring{border-color:var(--gold);background:rgba(40,30,15,.85)}
+.pause-ring .ico{width:30px;height:30px;margin-left:4px}
+.pause-txt{font:600 12px/1 var(--f-text);letter-spacing:.34em;padding-left:.34em;text-transform:uppercase;color:var(--champagne)}
+
+/* ---------- still frame for the link preview (?poster=1) ---------- */
+.poster-frame{position:absolute;inset:0;z-index:4;display:flex;align-items:center;justify-content:center;padding-block:6vh;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.poster-frame .pf{flex-direction:column;gap:calc(4*var(--u));width:min(100%,calc(170*var(--u)))}
+.pf-age{position:relative;isolation:isolate;display:flex;flex-direction:column;align-items:center;gap:calc(2*var(--u))}
+.pf-age .rays{opacity:1}
+.pf-age .age-svg{height:calc(44*var(--u))}
+.pf-text{display:flex;flex-direction:column;align-items:center;gap:calc(1.6*var(--u));min-width:0;width:100%}
+.pf-name{--fs:calc(15*var(--u));line-height:1.25}
+.pf-date{font:500 calc(5.6*var(--u))/1.3 var(--f-text);color:var(--champagne)}
+.pf-place{font:italic 500 calc(4.6*var(--u))/1.35 var(--f-text);color:var(--muted);text-wrap:balance}
+@media (min-aspect-ratio:5/4){
+  .poster-frame .pf{flex-direction:row;gap:calc(9*var(--u))}
+  .pf-age{flex:none}
+  .pf-text{flex:1}
+}
+#app.poster-mode :is(.hud,.skip,.tz,.pause-layer,#intro){display:none}
+#app.poster-mode .laurels{opacity:1;transition:none}
+#app.poster-mode .laurel .leaf{scale:1;animation:none}
+#app.poster-mode .laurel .stem{stroke-dashoffset:0;animation:none}
+@media (min-aspect-ratio:5/4){#app.poster-mode .laurels{display:none}}
 </style>
 </head>
 <body>
@@ -399,6 +461,8 @@ p,h1,h2,ul{margin:0}
   <symbol id="i-cal" viewBox="0 0 24 24"><rect x="4" y="5.5" width="16" height="14.5" rx="2"/><path d="M4 10h16M8.5 3.5v4M15.5 3.5v4"/></symbol>
   <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.2"/><path d="M12 7.5V12l3 2"/></symbol>
   <symbol id="i-chev" viewBox="0 0 24 24"><path d="M9.5 6l6 6-6 6"/></symbol>
+  <symbol id="i-pause" viewBox="0 0 24 24"><path d="M9 6.5v11M15 6.5v11" stroke-width="2.6"/></symbol>
+  <symbol id="i-play" viewBox="0 0 24 24"><path d="M8.5 5.8v12.4l9.6-6.2z" fill="currentColor"/></symbol>
 </svg>
 
 <div class="bg"></div>
@@ -408,7 +472,7 @@ p,h1,h2,ul{margin:0}
 <div class="decor balloons-b" aria-hidden="true"></div>
 
 <main class="scenes">
-  <section class="scene s-title" data-id="title" data-dur="8.5" aria-hidden="true">
+  <section class="scene s-title" data-id="title" data-n="1" data-dur="8.5" aria-hidden="true">
     <div class="fit">
       <p class="eyebrow r r-spread" style="--d:.4s">Покана за</p>
       <h1 class="script wipe fitx t-jub" style="--d:1s;--wd:2s"><span class="gold sheen">Юбилей</span></h1>
@@ -418,7 +482,7 @@ p,h1,h2,ul{margin:0}
     </div>
   </section>
 
-  <section class="scene s-number" data-id="number" data-dur="8" aria-hidden="true">
+  <section class="scene s-number" data-id="number" data-n="2" data-dur="8" aria-hidden="true">
     <div class="fit">
       <div class="age-wrap">
         <div class="rays" aria-hidden="true"></div>
@@ -438,7 +502,7 @@ p,h1,h2,ul{margin:0}
     </div>
   </section>
 
-  <section class="scene s-message" data-id="message" data-dur="12" aria-hidden="true">
+  <section class="scene s-message" data-id="message" data-n="3" data-dur="12" aria-hidden="true">
     <div class="fit">
       <div class="panel r-panel">
         <span class="pc tl"></span><span class="pc tr"></span><span class="pc bl"></span><span class="pc br"></span>
@@ -448,7 +512,7 @@ p,h1,h2,ul{margin:0}
     </div>
   </section>
 
-  <section class="scene s-details" data-id="details" data-dur="11" aria-hidden="true">
+  <section class="scene s-details" data-id="details" data-n="4" data-dur="11" aria-hidden="true">
     <div class="fit details">
       <div class="d-when">
         <p class="eyebrow r" style="--d:.3s" data-bind="weekday"></p>
@@ -470,7 +534,7 @@ p,h1,h2,ul{margin:0}
     </div>
   </section>
 
-  <section class="scene s-rsvp" data-id="rsvp" data-dur="8.5" aria-hidden="true">
+  <section class="scene s-rsvp" data-id="rsvp" data-n="5" data-dur="8.5" aria-hidden="true">
     <div class="fit">
       <svg class="flutes" viewBox="0 0 200 170" aria-hidden="true">
         <g class="fl-l"><g transform="translate(28 12)">
@@ -496,7 +560,7 @@ p,h1,h2,ul{margin:0}
     </div>
   </section>
 
-  <section class="scene s-finale" data-id="finale" data-dur="9.5" aria-hidden="true">
+  <section class="scene s-finale" data-id="finale" data-n="6" data-dur="9.5" aria-hidden="true">
     <div class="fit">
       <p class="script wipe fitx f-title" style="--d:.5s;--wd:2.4s"><span class="gold sheen" data-bind="closingTitle"></span></p>
       <p class="serif-it r f-text" style="--d:2.7s" data-bind="closingText"></p>
@@ -517,7 +581,7 @@ p,h1,h2,ul{margin:0}
           <li><svg class="ico" aria-hidden="true"><use href="#i-cal"/></svg><span data-bind="dateLong"></span></li>
           <li><svg class="ico" aria-hidden="true"><use href="#i-clock"/></svg><span>от <b data-bind="time"></b> ч.</span></li>
           <li><svg class="ico" aria-hidden="true"><use href="#i-pin"/></svg><span><span data-bind="venueLine"></span><small data-bind="address"></small></span></li>
-          <li><svg class="ico" aria-hidden="true"><use href="#i-phone"/></svg><span>Потвърдете до <span data-bind="rsvpShort"></span><span class="c-phone"><span id="c-phone" data-bind="phone"></span><button class="copy" id="a-copy" type="button" aria-label="Копирай номера" title="Копирай номера"><svg class="ico" aria-hidden="true"><use href="#i-copy"/></svg></button></span></span></li>
+          <li id="c-rsvp"><svg class="ico" aria-hidden="true"><use href="#i-phone"/></svg><span><span id="c-rsvp-text">Потвърдете до <span data-bind="rsvpShort"></span></span><span class="c-phone" id="c-phone-row"><span id="c-phone" data-bind="phone"></span><button class="copy" id="a-copy" type="button" aria-label="Копирай номера" title="Копирай номера"><svg class="ico" aria-hidden="true"><use href="#i-copy"/></svg></button></span></span></li>
         </ul>
         <div class="c-actions r" style="--d:1.5s">
           <a class="btn btn-primary" id="a-call" href="#"><svg class="ico" aria-hidden="true"><use href="#i-phone"/></svg>Обадете се</a>
@@ -530,11 +594,30 @@ p,h1,h2,ul{margin:0}
   </section>
 </main>
 
+<section class="poster-frame" id="poster" hidden aria-label="Покана за юбилей">
+  <div class="fit pf">
+    <div class="pf-age">
+      <div class="rays" aria-hidden="true"></div>
+      <svg class="age-svg" viewBox="0 0 300 220" aria-hidden="true"><text class="age-t" x="0" y="0" text-anchor="middle" fill="url(#ag-fill)">60</text></svg>
+      <p class="eyebrow age-label">години</p>
+    </div>
+    <div class="pf-text">
+      <p class="eyebrow">Покана за юбилей</p>
+      <p class="script fitx pf-name"><span class="gold" data-bind="name"></span></p>
+      <svg class="divider" aria-hidden="true"><use href="#divider"/></svg>
+      <p class="pf-date" data-bind="dateLong"></p>
+      <p class="pf-place" data-bind="timeLine"></p>
+    </div>
+  </div>
+</section>
+
 <canvas id="fx-front" class="fx" aria-hidden="true"></canvas>
 <button class="tz tz-prev" type="button" tabindex="-1" aria-hidden="true"></button>
 <button class="tz tz-next" type="button" tabindex="-1" aria-hidden="true"></button>
+<div class="pause-layer" id="pause-layer"><button class="pause-btn" id="b-resume" type="button" aria-label="Продължи"><span class="pause-ring"><svg class="ico" aria-hidden="true"><use href="#i-play"/></svg></span><span class="pause-txt">Пауза</span></button></div>
 <div class="hud">
   <div class="bars" aria-hidden="true"></div>
+  <button class="ibtn" id="b-pause" type="button" aria-label="Пауза" aria-pressed="false"><svg class="ico pz" aria-hidden="true"><use href="#i-pause"/></svg><svg class="ico pl" aria-hidden="true"><use href="#i-play"/></svg></button>
   <button class="ibtn" id="b-sound" type="button" aria-label="Звук" aria-pressed="true"><svg class="ico on" aria-hidden="true"><use href="#i-on"/></svg><svg class="ico off" aria-hidden="true"><use href="#i-off"/></svg></button>
   <button class="ibtn" id="b-full" type="button" aria-label="Цял екран" hidden><svg class="ico" aria-hidden="true"><use href="#i-full"/></svg></button>
 </div>
@@ -554,7 +637,7 @@ p,h1,h2,ul{margin:0}
   </div>
   <div class="intro-bottom">
     <p class="intro-hint">Натиснете печата, за да отворите</p>
-    <p class="intro-sound"><svg class="ico" aria-hidden="true"><use href="#i-on"/></svg>Включете звука</p>
+    <p class="intro-sound" id="intro-sound"><svg class="ico" aria-hidden="true"><use href="#i-on"/></svg>Включете звука</p>
   </div>
 </section>
 <div class="flash"></div>
@@ -569,7 +652,7 @@ const FX = (() => {
   const TAU = Math.PI * 2;
   const rand = (a, b) => a + Math.random() * (b - a);
   const pick = a => a[(Math.random() * a.length) | 0];
-  let W = 0, H = 0, DPR = 1, S = 1, T = 0, last = performance.now(), frontDirty = false, glow = 1, glowTarget = 1;
+  let W = 0, H = 0, DPR = 1, S = 1, T = 0, last = performance.now(), frontDirty = false, glow = 1, glowTarget = 1, paused = false;
   const dust = [], bokeh = [], sparks = [], rockets = [], confetti = [], glints = [], emitters = [];
 
   function sprite(size, stops) {
@@ -708,6 +791,7 @@ const FX = (() => {
       if (b.y < -b.r) { b.y = H + b.r; b.x = Math.random() * W; }
       if (b.x < -b.r) b.x = W + b.r; else if (b.x > W + b.r) b.x = -b.r;
     }
+    if (paused) return;   // frozen frame: only the ambient dust keeps drifting
     for (let i = emitters.length - 1; i >= 0; i--) { const e = emitters[i]; e.t += dt; e.fn(dt, e); if (e.t >= e.duration) emitters.splice(i, 1); }
     for (let i = rockets.length - 1; i >= 0; i--) {
       const r = rockets[i]; r.t += dt; const p = Math.min(1, r.t / r.dur), k = 1 - Math.pow(1 - p, 2.2);
@@ -786,12 +870,13 @@ const FX = (() => {
   }
   function start() { resize(); last = performance.now(); requestAnimationFrame(frame); }
 
-  return { start, resize, burst, rain, fireworks, glintsIn, glintBurst, ring, stopEmitters, setGlow: v => { glowTarget = v; } };
+  return { start, resize, burst, rain, fireworks, glintsIn, glintBurst, ring, stopEmitters, setGlow: v => { glowTarget = v; }, setPaused: v => { paused = !!v; } };
 })();
 
 /* ===== Music: an original gentle waltz-like piece synthesised live with Web Audio (no audio files) ===== */
 const Music = (() => {
-  let ctx = null, master = null, bus = null, startTime = 0, nextBar = 0, barIdx = 0, timer = null, muted = false, fading = false;
+  let ctx = null, master = null, bus = null, startTime = 0, nextBar = 0, barIdx = 0, timer = null, muted = false, fading = false, ending = false;
+  const LOOP_FROM = 1, LOOP_TO = 16, END = 17;   // bars 1–16 repeat until finish(), then the closing chord
   const VOL = .85, BPM = 76, BEAT = 60 / BPM, BAR = BEAT * 4;
   const mtof = m => 440 * Math.pow(2, (m - 69) / 12);
   const H = (a, b) => a + Math.random() * (b - a);
@@ -897,13 +982,18 @@ const Music = (() => {
     if (i === 9 || i === 13) sparkle(t, 6);
   }
   function schedule() {
-    while (barIdx < PROG.length && nextBar < ctx.currentTime + .3) { playBar(barIdx, nextBar); nextBar += BAR; barIdx++; }
-    if (barIdx >= PROG.length) { clearInterval(timer); timer = null; }
+    while (barIdx >= 0 && nextBar < ctx.currentTime + .3) {
+      if (ending) { playBar(END, nextBar); barIdx = -1; break; }
+      playBar(barIdx, nextBar); nextBar += BAR;
+      barIdx = barIdx >= LOOP_TO ? LOOP_FROM : barIdx + 1;
+    }
+    if (barIdx < 0 && timer) { clearInterval(timer); timer = null; }
   }
+  function finish() { if (ctx && barIdx >= 0 && timer) ending = true; }
   function start() {
     if (!init()) return;
     stop(true);
-    fading = false;
+    fading = false; ending = false;
     const now = ctx.currentTime;
     master.gain.cancelScheduledValues(now); master.gain.setValueAtTime(master.gain.value, now);
     master.gain.linearRampToValueAtTime(muted ? 0 : VOL, now + 1.2);
@@ -913,13 +1003,13 @@ const Music = (() => {
   }
   function stop(quick) {
     if (timer) { clearInterval(timer); timer = null; }
-    barIdx = PROG.length;
+    barIdx = -1;
     if (ctx && master && !quick) { const n = ctx.currentTime; master.gain.cancelScheduledValues(n); master.gain.setTargetAtTime(0, n, .05); }
   }
   function fadeOut(sec = 4) {
     if (!ctx || fading) return; fading = true;
     if (timer) { clearInterval(timer); timer = null; }
-    barIdx = PROG.length;
+    barIdx = -1;
     const n = ctx.currentTime; master.gain.cancelScheduledValues(n); master.gain.setValueAtTime(master.gain.value, n);
     master.gain.linearRampToValueAtTime(0, n + sec);
   }
@@ -955,7 +1045,7 @@ const Music = (() => {
     }
   };
   return {
-    init, start, fadeOut, setMuted, ...sfx,
+    init, start, finish, fadeOut, setMuted, ...sfx,
     get muted() { return muted; },
     suspend() { if (ctx && ctx.state === 'running') ctx.suspend(); },
     resume() { if (ctx && ctx.state === 'suspended') ctx.resume(); }
@@ -964,40 +1054,61 @@ const Music = (() => {
 
 /* ===== Invitation player ===== */
 (() => {
-  const C = Object.assign({
+  /* ---------- settings: defaults < CONFIG < address parameters ---------- */
+  const DEFAULTS = {
     name: 'Георги', age: 60, date: '', time: '19:00', venueType: 'ресторант', venue: '', address: '', mapQuery: '',
     rsvpDate: '', phone: '', greeting: 'Скъпи приятели,', message: '', highlight: '', closingTitle: 'Очаквам Ви!',
-    closingText: '', palette: 'gold', hours: 6, timeZone: 'Europe/Sofia'
-  }, window.CONFIG || {});
+    closingText: '', pageTitle: 'Юбилеят на {name}', slideSeconds: 0, durations: {}, sound: true,
+    palette: 'gold', hours: 6, timeZone: 'Europe/Sofia'
+  };
+  const ALIAS = { type: 'venueType', map: 'mapQuery', rsvp: 'rsvpDate', tel: 'phone', closing: 'closingTitle', title: 'pageTitle', slide: 'slideSeconds', theme: 'palette', tz: 'timeZone' };
+  const CFG = window.CONFIG || {};
+  const Q = new URLSearchParams(location.search);
+  const fromUrl = { durations: {} };
+  for (const [k0, v] of Q) {
+    const k = k0.trim(), m = /^slide(\d)$/i.exec(k), key = ALIAS[k] || k;
+    if (m) fromUrl.durations[m[1]] = v;
+    else if (key in DEFAULTS && key !== 'durations') fromUrl[key] = v;
+  }
+  const C = Object.assign({}, DEFAULTS, CFG, fromUrl);
+  C.durations = Object.assign({}, CFG.durations, fromUrl.durations);
+  const isOff = v => v === false || /^(0|false|off|no|не)$/i.test(String(v).trim());
+  const POSTER = (Q.has('poster') && !isOff(Q.get('poster'))) || location.hash === '#poster';
+
   const $ = (s, r = document) => r.querySelector(s), $$ = (s, r = document) => Array.from(r.querySelectorAll(s));
   const app = $('#app'), root = document.documentElement;
   root.lang = 'bg';
-  if (C.palette && C.palette !== 'gold') root.dataset.palette = C.palette;
+  if (['navy', 'bordo', 'emerald'].includes(C.palette)) root.dataset.palette = C.palette;
 
   /* ---------- data ---------- */
   const MONTHS = ['януари', 'февруари', 'март', 'април', 'май', 'юни', 'юли', 'август', 'септември', 'октомври', 'ноември', 'декември'];
   const DAYS = ['неделя', 'понеделник', 'вторник', 'сряда', 'четвъртък', 'петък', 'събота'];
   const ymd = s => { const m = /^(\d{4})-(\d{1,2})-(\d{1,2})$/.exec(String(s || '').trim()); return m ? new Date(+m[1], +m[2] - 1, +m[3]) : null; };
   const ev = ymd(C.date) || new Date(), rs = ymd(C.rsvpDate);
-  const name = String(C.name).trim(), age = String(C.age).trim();
+  const name = String(C.name).trim(), age = String(C.age).trim(), phone = String(C.phone || '').trim();
   const fill = s => String(s || '').split('{age}').join(age).split('{name}').join(name);
   const quote = s => { s = String(s || '').trim(); return !s || /^[„"«“]/.test(s) ? s : '„' + s + '“'; };
   const longDate = d => `${d.getDate()} ${MONTHS[d.getMonth()]} ${d.getFullYear()} г.`;
   const vType = String(C.venueType || '').trim();
+  const venueLine = [vType, quote(C.venue)].filter(Boolean).join(' ');
   const D = {
     name, initial: name.charAt(0).toUpperCase(), age,
     weekday: DAYS[ev.getDay()], day: ev.getDate(), month: MONTHS[ev.getMonth()], year: ev.getFullYear() + ' г.',
     time: C.time, venueTypeIn: vType ? (/^[вфВФ]/.test(vType) ? 'във ' : 'в ') + vType : '',
-    venueQ: quote(C.venue), address: C.address, venueLine: [vType, quote(C.venue)].filter(Boolean).join(' '),
+    venueQ: quote(C.venue), address: C.address, venueLine,
     dateLong: `${DAYS[ev.getDay()]}, ${longDate(ev)}`,
+    timeLine: [`от ${C.time} ч.`, venueLine].filter(Boolean).join(' · '),
     rsvpLong: rs ? longDate(rs) : '', rsvpShort: rs ? `${rs.getDate()} ${MONTHS[rs.getMonth()]}` : '',
-    phone: C.phone, greeting: fill(C.greeting), closingTitle: fill(C.closingTitle), closingText: fill(C.closingText)
+    phone, greeting: fill(C.greeting), closingTitle: fill(C.closingTitle), closingText: fill(C.closingText)
   };
   $$('[data-bind]').forEach(el => { const k = el.dataset.bind; if (k in D) el.textContent = D[k]; });
-  document.title = `Юбилеят на ${name}`;
+  document.title = fill(C.pageTitle).trim() || `Юбилеят на ${name}`;
   $('#age').setAttribute('aria-label', `${age} години`);
-  if (!rs) $('.rs-date').hidden = true;
-  if (!C.phone) $('.rs-phone').hidden = true;
+  if (!rs && !phone) { $('.s-rsvp').remove(); $('#c-rsvp').hidden = true; }
+  else {
+    if (!rs) { $('.rs-date').hidden = true; $('#c-rsvp-text').textContent = 'Потвърдете присъствие'; }
+    if (!phone) { $('.rs-phone').hidden = true; $('#c-phone-row').hidden = true; }
+  }
 
   function buildMessage() {
     const el = $('#msg'), text = fill(C.message), hl = fill(C.highlight);
@@ -1013,6 +1124,18 @@ const Music = (() => {
   }
   const words = buildMessage();
   $('.s-message').dataset.dur = Math.min(20, Math.max(9, 2.1 + words / 3.4 + 2.4)).toFixed(1);
+
+  /* ---------- slide durations: automatic, all slides, or one slide ---------- */
+  const scenes = $$('.scenes > .scene'), CARD = scenes.length - 1;
+  const secs = v => { const n = parseFloat(String(v ?? '').replace(',', '.')); return n > 0 ? n : 0; };
+  // shortest time in which a slide's own animations can finish
+  const MIN = { title: 6.5, number: 5, message: 4.2 + words * .11, details: 6.5, rsvp: 5.5, finale: 6.5 };
+  scenes.forEach(sc => {
+    if (sc.dataset.id === 'card') return;
+    const n = sc.dataset.n;
+    const d = secs(C.durations[n] ?? C.durations[sc.dataset.id]) || secs(C.slideSeconds) || parseFloat(sc.dataset.dur);
+    sc.dataset.dur = Math.min(300, Math.max(MIN[sc.dataset.id] || 4, d)).toFixed(1);
+  });
 
   /* ---------- decor ---------- */
   const r2 = (a, b) => (a + Math.random() * (b - a)).toFixed(2);
@@ -1042,16 +1165,17 @@ const Music = (() => {
   $('.laurels').innerHTML = laurel('lr-l') + laurel('lr-r');
 
   function buildAge() {
-    const svg = $('#age');
-    $$('text', svg).forEach(t => { t.textContent = age; });
     const c = document.createElement('canvas').getContext('2d');
     c.font = '500 200px "Playfair Display", Georgia, serif'; c.textAlign = 'center'; c.textBaseline = 'alphabetic';
     const m = c.measureText(age);
     const L = m.actualBoundingBoxLeft || 60 * age.length, R = m.actualBoundingBoxRight || 60 * age.length;
     const A = m.actualBoundingBoxAscent || 150, De = m.actualBoundingBoxDescent || 4, pad = 14;
     const x = -L - pad, y = -A - pad, w = L + R + 2 * pad, h = A + De + 2 * pad;
-    svg.setAttribute('viewBox', `${x.toFixed(1)} ${y.toFixed(1)} ${w.toFixed(1)} ${h.toFixed(1)}`);
-    const sh = $('.age-sheen', svg), rw = w * .5;
+    $$('.age-svg').forEach(svg => {
+      $$('text', svg).forEach(t => { t.textContent = age; });
+      svg.setAttribute('viewBox', `${x.toFixed(1)} ${y.toFixed(1)} ${w.toFixed(1)} ${h.toFixed(1)}`);
+    });
+    const sh = $('.age-sheen'), rw = w * .5;
     sh.setAttribute('x', (x - rw).toFixed(1)); sh.setAttribute('y', y.toFixed(1));
     sh.setAttribute('width', rw.toFixed(1)); sh.setAttribute('height', h.toFixed(1));
   }
@@ -1079,13 +1203,12 @@ const Music = (() => {
   }
 
   /* ---------- player ---------- */
-  const scenes = $$('.scene'), CARD = scenes.length - 1;
   const barsEl = $('.bars');
   for (let i = 0; i < CARD; i++) barsEl.insertAdjacentHTML('beforeend', '<span class="bar"><i></i></span>');
   const barEls = $$('.bar i', barsEl);
   const dur = i => parseFloat(scenes[i].dataset.dur) || 8;
   const BA = $('.balloons-a'), BB = $('.balloons-b'), LA = $('.laurels');
-  let cur = -1, el = 0, cueI = 0, playing = false, last = performance.now();
+  let cur = -1, el = 0, cueI = 0, playing = false, userPaused = false, last = performance.now();
   const outT = new Map();
 
   const setCls = (node, cls) => { node.classList.remove('rise', 'away', 'release'); if (cls) { void node.offsetWidth; node.classList.add(cls); } };
@@ -1105,7 +1228,7 @@ const Music = (() => {
     details: [[0, () => { decor('details'); FX.ring($('.ring'), 2.3, 10.5); }]],
     rsvp: [[0, () => decor('rsvp')], [1.6, () => { const r = $('.flutes').getBoundingClientRect(); FX.glintBurst(r.left + r.width * .5, r.top + r.height * .1, 9, 26); Music.clink(); }]],
     finale: [[0, () => decor('finale')], [.1, () => Music.chime()], [.5, () => FX.fireworks(8.5)], [2.2, () => FX.rain(3.5, 34)], [4.8, () => FX.glintsIn($('.f-sign > span'), 2.5, 4)]],
-    card: [[0, () => { decor('card'); Music.fadeOut(4.5); wake(false); }], [.9, () => FX.glintsIn($('.c-name > span'), 1.6, 3)]]
+    card: [[0, () => { decor('card'); Music.finish(); wake(false); }], [.9, () => FX.glintsIn($('.c-name > span'), 1.6, 3)]]
   };
 
   function goTo(i) {
@@ -1131,22 +1254,39 @@ const Music = (() => {
   function drawBars() { barEls.forEach((b, k) => b.style.setProperty('--p', k < cur ? 1 : k === cur ? Math.min(1, el / dur(k)).toFixed(4) : 0)); }
   function tick(now) {
     const dt = Math.min(.1, Math.max(0, (now - last) / 1000)); last = now;
-    if (playing && cur >= 0 && !document.hidden) {
+    if (playing && !userPaused && cur >= 0 && !document.hidden) {
       el += dt; runCues();
       if (cur < CARD && el >= dur(cur)) goTo(cur + 1);
       drawBars();
     }
     requestAnimationFrame(tick);
   }
-  const next = () => { if (cur < CARD) goTo(cur + 1); };
-  const prev = () => { if (cur >= 0) goTo(el > 1.5 || cur === 0 ? cur : cur - 1); };
-  function replay() { LA.classList.remove('show', 'grow'); Music.start(); wake(true); playing = true; goTo(0); }
+
+  /* ---------- pause ---------- */
+  const bPause = $('#b-pause');
+  function setPaused(p) {
+    p = !!p && playing && cur >= 0 && cur < CARD;
+    if (p === userPaused) return;
+    userPaused = p;
+    app.classList.toggle('user-paused', p);
+    app.classList.toggle('paused', p || document.hidden);
+    FX.setPaused(p);
+    if (p) Music.suspend(); else Music.resume();
+    bPause.setAttribute('aria-pressed', String(p));
+    bPause.setAttribute('aria-label', p ? 'Продължи' : 'Пауза');
+    wake(!p);
+  }
+  const togglePause = () => setPaused(!userPaused);
+  const go = i => { setPaused(false); goTo(i); };
+  const next = () => { if (cur < CARD) go(cur + 1); };
+  const prev = () => { if (cur >= 0) go(el > 1.5 || cur === 0 ? cur : cur - 1); };
+  function replay() { setPaused(false); LA.classList.remove('show', 'grow'); Music.start(); wake(true); playing = true; goTo(0); }
 
   /* ---------- intro ---------- */
   let opened = false;
   const later = (fn, ms) => setTimeout(fn, ms);
   function openInvite() {
-    if (opened) return; opened = true;
+    if (opened || POSTER) return; opened = true;
     Music.init(); Music.seal();
     const [sx, sy] = center($('#seal'));
     FX.glintBurst(sx, sy, 12, 40); FX.burst(sx, sy, 40, .5);
@@ -1165,8 +1305,13 @@ const Music = (() => {
   const bSound = $('#b-sound');
   function showSound(m) { bSound.classList.toggle('muted', m); bSound.setAttribute('aria-pressed', String(!m)); bSound.setAttribute('aria-label', m ? 'Включи звука' : 'Изключи звука'); }
   function toggleSound() { const m = !Music.muted; Music.setMuted(m); showSound(m); try { localStorage.setItem('invite-muted', m ? '1' : '0'); } catch (e) {} }
-  try { if (localStorage.getItem('invite-muted') === '1') { Music.setMuted(true); showSound(true); } } catch (e) {}
+  let startMuted = isOff(C.sound);
+  try { if (localStorage.getItem('invite-muted') === '1') startMuted = true; } catch (e) {}
+  if (startMuted) { Music.setMuted(true); showSound(true); }
+  if (isOff(C.sound)) $('#intro-sound').hidden = true;
   bSound.addEventListener('click', toggleSound);
+  bPause.addEventListener('click', togglePause);
+  $('#pause-layer').addEventListener('click', () => setPaused(false));
   const bFull = $('#b-full');
   if (document.fullscreenEnabled && root.requestFullscreen) {
     bFull.hidden = false;
@@ -1174,17 +1319,18 @@ const Music = (() => {
   }
   $('.tz-next').addEventListener('click', next);
   $('.tz-prev').addEventListener('click', prev);
-  $('#b-skip').addEventListener('click', () => goTo(CARD));
+  $('#b-skip').addEventListener('click', () => go(CARD));
   $('#a-replay').addEventListener('click', replay);
   document.addEventListener('keydown', e => {
-    if (e.altKey || e.ctrlKey || e.metaKey) return;
+    if (e.altKey || e.ctrlKey || e.metaKey || POSTER) return;
     if (!opened) { if ((e.key === 'Enter' || e.key === ' ') && !(e.target.closest && e.target.closest('button,a'))) { e.preventDefault(); openInvite(); } return; }
     if (app.classList.contains('is-intro')) return;
     const onControl = e.target.closest && e.target.closest('a,button');
     if ((e.key === 'Enter' || e.key === ' ') && onControl) return;
-    if (e.key === 'ArrowRight' || e.key === 'PageDown' || e.key === ' ') { e.preventDefault(); next(); }
+    if (e.key === ' ' || /^[kк]$/i.test(e.key)) { e.preventDefault(); togglePause(); }
+    else if (e.key === 'ArrowRight' || e.key === 'PageDown') { e.preventDefault(); next(); }
     else if (e.key === 'ArrowLeft' || e.key === 'PageUp') { e.preventDefault(); prev(); }
-    else if (e.key === 'End' || e.key === 'Escape') goTo(CARD);
+    else if (e.key === 'End' || e.key === 'Escape') go(CARD);
     else if (e.key === 'Home') replay();
     else if (/^[mм]$/i.test(e.key)) toggleSound();
   });
@@ -1198,49 +1344,57 @@ const Music = (() => {
   }
   document.addEventListener('visibilitychange', () => {
     if (document.hidden) { app.classList.add('paused'); Music.suspend(); }
-    else { app.classList.remove('paused'); Music.resume(); last = performance.now(); if (playing && cur < CARD) wake(true); }
+    else if (!userPaused) { app.classList.remove('paused'); Music.resume(); if (playing && cur < CARD) wake(true); }
   });
 
   /* ---------- card actions ---------- */
   let toastT;
   function toast(msg) { const t = $('#toast'); t.textContent = msg; t.classList.add('show'); clearTimeout(toastT); toastT = setTimeout(() => t.classList.remove('show'), 2400); }
-  const digits = String(C.phone || '').replace(/[^\d+]/g, '');
+  const digits = phone.replace(/[^\d+]/g, '');
   if (digits) $('#a-call').href = 'tel:' + digits; else { $('#a-call').hidden = true; $('#a-copy').hidden = true; }
-  const place = [D.venueLine, C.address].filter(Boolean).join(', ');
+  const place = [venueLine, C.address].filter(Boolean).join(', ');
   $('#a-map').href = 'https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent(C.mapQuery || place);
   const p2 = n => String(n).padStart(2, '0');
   const [hh, mi] = String(C.time).split(':').map(n => parseInt(n, 10) || 0);
-  const t0 = new Date(ev.getFullYear(), ev.getMonth(), ev.getDate(), hh, mi), t1 = new Date(t0.getTime() + (+C.hours || 6) * 36e5);
+  const t0 = new Date(ev.getFullYear(), ev.getMonth(), ev.getDate(), hh, mi), t1 = new Date(t0.getTime() + (secs(C.hours) || 6) * 36e5);
   const gc = d => `${d.getFullYear()}${p2(d.getMonth() + 1)}${p2(d.getDate())}T${p2(d.getHours())}${p2(d.getMinutes())}00`;
   $('#a-cal').href = 'https://calendar.google.com/calendar/render?action=TEMPLATE'
     + '&text=' + encodeURIComponent(`Юбилей на ${name} (${age} години)`)
     + '&dates=' + gc(t0) + '/' + gc(t1) + '&ctz=' + encodeURIComponent(C.timeZone || 'Europe/Sofia')
     + '&location=' + encodeURIComponent(place)
-    + '&details=' + encodeURIComponent(rs && C.phone ? `Потвърдете присъствие до ${D.rsvpLong} на тел. ${C.phone}` : '');
+    + '&details=' + encodeURIComponent(rs && phone ? `Потвърдете присъствие до ${D.rsvpLong} на тел. ${phone}` : '');
   $('#a-copy').addEventListener('click', () => {
     const fail = () => {
       const r = document.createRange(); r.selectNodeContents($('#c-phone'));
       const s = getSelection(); s.removeAllRanges(); s.addRange(r); toast('Номерът е маркиран, копирайте го');
     };
-    try { navigator.clipboard.writeText(String(C.phone)).then(() => toast('Номерът е копиран'), fail); } catch (e) { fail(); }
+    try { navigator.clipboard.writeText(phone).then(() => toast('Номерът е копиран'), fail); } catch (e) { fail(); }
   });
 
+  /* ---------- still frame for link previews ---------- */
+  const posterEl = $('#poster');
+  if (POSTER) {
+    app.classList.add('poster-mode'); app.classList.remove('is-intro');
+    posterEl.hidden = false; LA.classList.add('show', 'grow');
+  }
+
   /* ---------- boot ---------- */
-  function relayout() { FX.resize(); if (cur >= 0) fitScene(scenes[cur]); }
+  function relayout() { FX.resize(); if (cur >= 0) fitScene(scenes[cur]); if (POSTER) fitScene(posterEl); }
   let rT;
   const onResize = () => { clearTimeout(rT); rT = setTimeout(relayout, 120); };
   addEventListener('resize', onResize);
   if (window.visualViewport) visualViewport.addEventListener('resize', onResize);
   buildAge();
-  const fontsReady = () => { buildAge(); if (cur >= 0) fitScene(scenes[cur]); };
+  if (POSTER) fitScene(posterEl);
+  const fontsReady = () => { buildAge(); if (cur >= 0) fitScene(scenes[cur]); if (POSTER) { fitScene(posterEl); app.dataset.ready = '1'; } };
   if (document.fonts && document.fonts.load) {
     Promise.all(['400 64px "Great Vibes"', '500 64px "Playfair Display"', 'italic 400 64px "Playfair Display"', '500 32px "Cormorant Garamond"', '600 32px "Cormorant Garamond"', 'italic 500 32px "Cormorant Garamond"']
       .map(f => document.fonts.load(f, 'Юбилей 0123456789').catch(() => {}))).then(fontsReady);
     document.fonts.ready.then(fontsReady);
-  }
+  } else app.dataset.ready = '1';
   FX.start();
   requestAnimationFrame(tick);
-  window.Invitation = { goTo, next, prev, replay, open: openInvite, scenes: scenes.map(s => s.dataset.id) };
+  window.Invitation = { goTo, next, prev, replay, pause: setPaused, open: openInvite, scenes: scenes.map(s => s.dataset.id), durations: scenes.map(s => +s.dataset.dur) };
 })();
 </script>
 </body>
