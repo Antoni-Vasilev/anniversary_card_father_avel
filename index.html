@@ -31,6 +31,13 @@
    НАСТРОЙКИ НА ПОКАНАТА — сменете стойностите в кавичките.
    Всичко останало (дати, дни от седмицата, календар, карта)
    се изчислява автоматично от тези данни.
+
+   ЗАМЕСТВАНЕ В ТЕКСТОВЕТЕ: във всеки текст {име-на-настройка} се заменя
+   със стойността ѝ — {name}, {age}, {venue}, {address}, {time}, {phone}…
+   Датите излизат с думи: {date} = 6 декември 2026 г., {weekday} = неделя,
+   {day}, {month}, {year}, {rsvp} = срокът за потвърждение.
+   Можете да добавите и свои думи — нов ред като guest по-долу — и да
+   пишете {guest} където искате. Ако думата я няма, {…} просто изчезва.
    =================================================================== */
 window.CONFIG = {
   name: "Светлозар Стоянов",      // име на юбиляря (заглавие и подпис)
@@ -43,12 +50,13 @@ window.CONFIG = {
   mapQuery: "Вила Чинка",                   // по желание: точен адрес за Google Maps
   rsvpDate: "2026-11-15",         // потвърждение до: ГГГГ-ММ-ДД (празно = без срок)
   phone: "",                      // телефон за потвърждение (празно = без телефон)
-  greeting: "Скъпи колеги,",
+  guest: "колеги",                // ваша дума: {guest} в обръщението; в линка ?guest=Иване
+  greeting: "Скъпи {guest},",
   message: "За мен ще бъде голяма радост и чест да отпразнуваме заедно моя {age}-годишен юбилей!",
   highlight: "{age}-годишен юбилей",   // тази част от текста е в злато
   closingTitle: "Очаквам Ви!",
   closingText: "Нека заедно превърнем този ден в незабравим спомен!",
-  pageTitle: "Покана за юбилей", // заглавие в раздела на браузъра ({name} и {age} се заместват)
+  pageTitle: "Покана за юбилей", // заглавие в раздела на браузъра
   slideSeconds: 0,                // секунди за всеки слайд; 0 = автоматично (8–12 сек.)
   durations: {3: 15},                  // секунди за отделен слайд, напр. { 3: 15, 4: 12 }
                                   // 1 заглавие · 2 години · 3 текст · 4 дата и място · 5 потвърждение · 6 „Очаквам Ви“
@@ -57,12 +65,14 @@ window.CONFIG = {
   hours: 6,                       // продължителност на празника (за календара)
   timeZone: "Europe/Sofia"
 };
-/* ПАРАМЕТРИ В АДРЕСА — по желание; заменят настройките по-горе. Пример:
-     index.html?name=Иван Петров&age=60&date=2026-12-20&time=19:30&venue=Златна липа&slide=10
-   name · age · date · time · type (ресторант…) · venue · address · map · rsvp · phone
-   greeting · message · highlight · closing · closingText · title (заглавие на раздела)
-   palette · slide (сек. за всеки слайд) · slide1 … slide6 (сек. за отделен слайд)
-   sound=0 (без звук) · poster=1 (неподвижен кадър, от който е направена снимката preview.jpg) */
+/* ПАРАМЕТРИ В АДРЕСА — по желание. Всеки параметър в линка е по-важен от
+   настройката със същото име по-горе — и за вашите думи като guest. Пример:
+     index.html?guest=Иване&name=Иван Петров&age=60&date=2026-12-20&time=19:30&slide=10
+   Имената са същите като по-горе; има и кратки: type (= venueType) · map (= mapQuery)
+   rsvp (= rsvpDate) · closing (= closingTitle) · title (= pageTitle) · slide (= slideSeconds)
+   slide1 … slide6 (сек. за отделен слайд) · sound=0 (без звук)
+   poster=1 (неподвижен кадър, от който е направена снимката preview.jpg)
+   В линка интервалът може да е %20, а „&“ в текст се пише %26. */
 </script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -1068,10 +1078,11 @@ const Music = (() => {
   const CFG = window.CONFIG || {};
   const Q = new URLSearchParams(location.search);
   const fromUrl = { durations: {} };
+  const NOT_A_SETTING = ['poster', 'durations', '__proto__', 'constructor', 'prototype'];
   for (const [k0, v] of Q) {
     const k = k0.trim(), m = /^slide(\d)$/i.exec(k), key = ALIAS[k] || k;
     if (m) fromUrl.durations[m[1]] = v;
-    else if (key in DEFAULTS && key !== 'durations') fromUrl[key] = v;
+    else if (key && !NOT_A_SETTING.includes(key)) fromUrl[key] = v;   // every parameter, also your own ones such as guest
   }
   const C = Object.assign({}, DEFAULTS, CFG, fromUrl);
   C.durations = Object.assign({}, CFG.durations, fromUrl.durations);
@@ -1088,10 +1099,28 @@ const Music = (() => {
   const DAYS = ['неделя', 'понеделник', 'вторник', 'сряда', 'четвъртък', 'петък', 'събота'];
   const ymd = s => { const m = /^(\d{4})-(\d{1,2})-(\d{1,2})$/.exec(String(s || '').trim()); return m ? new Date(+m[1], +m[2] - 1, +m[3]) : null; };
   const ev = ymd(C.date) || new Date(), rs = ymd(C.rsvpDate);
-  const name = String(C.name).trim(), age = String(C.age).trim(), phone = String(C.phone || '').trim();
-  const fill = s => String(s || '').split('{age}').join(age).split('{name}').join(name);
-  const quote = s => { s = String(s || '').trim(); return !s || /^[„"«“]/.test(s) ? s : '„' + s + '“'; };
   const longDate = d => `${d.getDate()} ${MONTHS[d.getMonth()]} ${d.getFullYear()} г.`;
+
+  /* ---------- {placeholders} in every text ----------
+     {x} is the setting x as merged above (the link wins over CONFIG), so {name}, {age}, {venue}
+     and made-up ones like {guest} all work; dates are written out in words. */
+  const VARS = Object.create(null);
+  for (const [k, v] of Object.entries(C)) if (typeof v === 'string' || typeof v === 'number') VARS[k] = String(v);
+  for (const [a, k] of Object.entries(ALIAS)) if (!(a in VARS) && k in VARS) VARS[a] = VARS[k];
+  Object.assign(VARS, {
+    date: longDate(ev), weekday: DAYS[ev.getDay()], day: String(ev.getDate()), month: MONTHS[ev.getMonth()], year: String(ev.getFullYear()),
+    rsvpDate: rs ? longDate(rs) : '', rsvp: rs ? longDate(rs) : ''
+  });
+  const expand = (s, depth = 0) => {
+    const out = s.replace(/\{\s*([^{}\s]+)\s*\}/g, (_, k) => VARS[k] ?? VARS[k.toLowerCase()] ?? '');
+    return out !== s && depth < 4 && /\{\s*[^{}\s]+\s*\}/.test(out) ? expand(out, depth + 1) : out;   // a value may hold {other}
+  };
+  // unknown {x} becomes empty; then tidy the gap it leaves ("Скъпи {x}," → "Скъпи,")
+  const fill = s => expand(String(s ?? '')).replace(/\{\s*[^{}\s]+\s*\}/g, '').replace(/[ \t]{2,}/g, ' ').replace(/ +([,.!?;:])/g, '$1').trim();
+  for (const k of Object.keys(C)) if (typeof C[k] === 'string') C[k] = fill(C[k]);
+
+  const name = String(C.name).trim(), age = String(C.age).trim(), phone = String(C.phone || '').trim();
+  const quote = s => { s = String(s || '').trim(); return !s || /^[„"«“]/.test(s) ? s : '„' + s + '“'; };
   const vType = String(C.venueType || '').trim();
   const venueLine = [vType, quote(C.venue)].filter(Boolean).join(' ');
   const D = {
@@ -1102,10 +1131,10 @@ const Music = (() => {
     dateLong: `${DAYS[ev.getDay()]}, ${longDate(ev)}`,
     timeLine: [`от ${C.time} ч.`, venueLine].filter(Boolean).join(' · '),
     rsvpLong: rs ? longDate(rs) : '', rsvpShort: rs ? `${rs.getDate()} ${MONTHS[rs.getMonth()]}` : '',
-    phone, greeting: fill(C.greeting), closingTitle: fill(C.closingTitle), closingText: fill(C.closingText)
+    phone, greeting: C.greeting, closingTitle: C.closingTitle, closingText: C.closingText
   };
   $$('[data-bind]').forEach(el => { const k = el.dataset.bind; if (k in D) el.textContent = D[k]; });
-  document.title = fill(C.pageTitle).trim() || `Юбилеят на ${name}`;
+  document.title = C.pageTitle || `Юбилеят на ${name}`;
   $('#age').setAttribute('aria-label', `${age} години`);
   if (!rs && !phone) { $('.s-rsvp').remove(); $('#c-rsvp').hidden = true; }
   else {
@@ -1114,7 +1143,7 @@ const Music = (() => {
   }
 
   function buildMessage() {
-    const el = $('#msg'), text = fill(C.message), hl = fill(C.highlight);
+    const el = $('#msg'), text = C.message, hl = C.highlight;
     const hs = hl ? text.indexOf(hl) : -1, he = hs + hl.length;
     el.textContent = '';
     let i = 0, m; const re = /\S+/g;
